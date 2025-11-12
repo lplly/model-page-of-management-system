@@ -20,10 +20,10 @@
 </template>
 
 <script setup>
-// 引入两个独立组件
+// 引入两个独立组件 + onMounted钩子
 import TopNav from './TopNav.vue'
 import StaticSidebar from './StaticSidebar.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 // 控制侧边栏折叠状态
 const sidebarCollapsed = ref(false)
@@ -32,6 +32,11 @@ const sidebarCollapsed = ref(false)
 const toggleSidebar = () => {
   sidebarCollapsed.value = !sidebarCollapsed.value
 }
+
+// 组件渲染完成后设置浏览器标签页标题（核心修改）
+onMounted(() => {
+  document.title = 'Lim管理系统' // 改成你想要的网页名字，比如"Lim后台管理系统"
+})
 </script>
 
 <style scoped>
