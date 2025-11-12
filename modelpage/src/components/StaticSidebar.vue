@@ -1,77 +1,70 @@
 <template>
   <div class="static-sidebar">
-    <!-- 顶部Logo区域 -->
+    <!-- 顶部Logo区域：大图片Logo（1.png） -->
     <div class="sidebar-header">
       <div class="logo">
-        <!-- 局部引入的图标组件 -->
-        <Leaf class="icon" />
-        <span>管理系统</span>
+        <!-- 大图片Logo：增加max-width确保不溢出 -->
+        <img src="@/assets/images/1.png" alt="Lim管理系统" class="logo-img">
+        <span>Lim管理系统</span>
       </div>
     </div>
 
-    <!-- 导航菜单列表 -->
+    <!-- 导航菜单列表：保持你的结构 -->
     <ul class="menu-list">
       <!-- 首页（当前选中状态） -->
       <li class="menu-item active">
-        <Home class="icon" />
+        <el-icon class="icon" :style="{ display: 'inline-flex' }"><Home /></el-icon>
         <span>首页</span>
       </li>
 
       <!-- 系统管理（带下级菜单） -->
       <li class="menu-group">
         <div class="group-title">
-          <Tools class="icon" />
+          <el-icon class="icon" :style="{ display: 'inline-flex' }"><Tools /></el-icon>
           <span>系统管理</span>
-          <ArrowDown class="arrow-icon" /> <!-- 下拉箭头 -->
+          <el-icon class="arrow-icon"><ArrowDown /></el-icon>
         </div>
-        <!-- 子菜单 -->
         <ul class="submenu">
-          <li><User class="sub-icon" /><span>用户管理</span></li>
-          <li><UserFilled class="sub-icon" /><span>角色管理</span></li>
-          <li><Menu class="sub-icon" /><span>菜单管理</span></li>
-          <li><OfficeBuilding class="sub-icon" /><span>部门管理</span></li>
-          <li><Postcard class="sub-icon" /><span>岗位管理</span></li>
-          <li><CollectionTag class="sub-icon" /><span>字典管理</span></li>
-          <li><Setting class="sub-icon" /><span>参数设置</span></li>
+          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><User /></el-icon><span>用户管理</span></li>
+          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><UserFilled /></el-icon><span>角色管理</span></li>
+          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Menu /></el-icon><span>菜单管理</span></li>
+          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><OfficeBuilding /></el-icon><span>部门管理</span></li>
+          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Postcard /></el-icon><span>岗位管理</span></li>
+          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><CollectionTag /></el-icon><span>字典管理</span></li>
+          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Message /></el-icon><span>通知公告</span></li>
         </ul>
       </li>
 
-      <!-- 通知公告 -->
-      <li class="menu-item">
-        <Message class="icon" />
-        <span>通知公告</span>
-      </li>
-
-      <!-- 日志管理（带下级菜单） -->
+      <!-- 日志管理 -->
       <li class="menu-group">
         <div class="group-title">
-          <Notebook2 class="icon" />
+          <el-icon class="icon" :style="{ display: 'inline-flex' }"><Notebook2 /></el-icon>
           <span>日志管理</span>
-          <ArrowDown class="arrow-icon" />
+          <el-icon class="arrow-icon"><ArrowDown /></el-icon>
         </div>
       </li>
 
-      <!-- 系统监控（带下级菜单） -->
+      <!-- 系统监控 -->
       <li class="menu-group">
         <div class="group-title">
-          <VideoCamera class="icon" />
+          <el-icon class="icon" :style="{ display: 'inline-flex' }"><VideoCamera /></el-icon>
           <span>系统监控</span>
-          <ArrowDown class="arrow-icon" />
+          <el-icon class="arrow-icon"><ArrowDown /></el-icon>
         </div>
       </li>
 
-      <!-- 系统工具（带下级菜单） -->
+      <!-- 系统工具 -->
       <li class="menu-group">
         <div class="group-title">
-          <Box class="icon" />
+          <el-icon class="icon" :style="{ display: 'inline-flex' }"><Box /></el-icon>
           <span>系统工具</span>
-          <ArrowDown class="arrow-icon" />
+          <el-icon class="arrow-icon"><ArrowDown /></el-icon>
         </div>
       </li>
 
-      <!--官网 -->
-      <li class="menu-item" style="margin-top: auto;"> <!-- 推到最底部 -->
-        <Link class="icon" />
+      <!-- 官网（徽章白色） -->
+      <li class="menu-item" style="margin-top: auto;">
+        <el-icon class="icon" :style="{ display: 'inline-flex' }"><Link /></el-icon>
         <span>官网</span>
         <span class="badge">vue.ruoyi.vip</span>
       </li>
@@ -80,30 +73,29 @@
 </template>
 
 <script>
-
+// 确保只引入使用过的图标
 import {
-  Leaf, Home, Tools, User, UserFilled, Menu, OfficeBuilding,
-  Postcard, CollectionTag, Setting, Message, Notebook2,
+  Home, Tools, User, UserFilled, Menu, OfficeBuilding,
+  Postcard, CollectionTag, Message, Notebook2,
   VideoCamera, Box, Link, ArrowDown
 } from '@element-plus/icons-vue'
 
 export default {
-  name: 'static-sidebar', 
+  name: 'static-sidebar',
   components: {
-    
-    Leaf, Home, Tools, User, UserFilled, Menu, OfficeBuilding,
-    Postcard, CollectionTag, Setting, Message, Notebook2,
+    Home, Tools, User, UserFilled, Menu, OfficeBuilding,
+    Postcard, CollectionTag, Message, Notebook2,
     VideoCamera, Box, Link, ArrowDown
   }
 }
 </script>
 
 <style scoped>
-
+/* 侧边栏容器：保持原有蓝色背景 */
 .static-sidebar {
   width: 210px;
   height: 100vh;
-  background-color: #001529;
+  background-color: #3e90dd;
   color: #fff;
   font-size: 14px;
   display: flex;
@@ -123,19 +115,47 @@ export default {
 .sidebar-header .logo {
   display: flex;
   align-items: center;
+  width: 100%; /* 确保占满宽度 */
+  gap: 8px; /* 图标和文字间距，比margin更灵活 */
 }
 
-/* 图标通用样式 */
-.icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-  color: #1890ff;
+/* 核心修改：大图片Logo适配（避免拉伸/溢出） */
+.logo-img {
+  height: 40px; /* 适配Logo区域高度（60px-上下内边距） */
+  max-width: 120px; /* 限制最大宽度，避免溢出侧边栏 */
+  object-fit: contain; /* 保持图片比例，不拉伸变形 */
+  vertical-align: middle; /* 垂直居中 */
 }
 
+/* Logo文字：保持原有样式 */
 .sidebar-header .logo span {
   font-size: 16px;
   font-weight: 500;
+  white-space: nowrap; /* 避免文字换行 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 文字过长时显示省略号 */
+}
+
+/* 图标通用样式：强制显示 */
+.icon {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 8px;
+  color: #075196 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 子菜单图标样式：同样强制显示 */
+.sub-icon {
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 10px;
+  color: #a0a0a0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 菜单列表容器 */
@@ -143,29 +163,34 @@ export default {
   flex: 1;
   padding: 10px 0;
   list-style: none;
-  overflow-y: auto; /* 内容过多时滚动 */
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
-/* 滚动条美化 */
+/* 滚动条美化：保持原有青色 */
 .menu-list::-webkit-scrollbar {
   width: 4px;
 }
 
 .menu-list::-webkit-scrollbar-thumb {
-  background: #1890ff;
+  background: #07c4aa;
   border-radius: 2px;
 }
 
-/* 菜单项通用样式 */
+/* 菜单项通用样式：确保占满宽度 */
 .menu-item, .menu-group {
   margin: 2px 0;
   cursor: pointer;
+  width: 100%;
 }
 
-.menu-item:hover, .menu-group:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+/* 菜单项hover效果：保持你的深蓝色 */
+.menu-item:hover {
+  background-color: rgba(47, 88, 141, 0.959);
+}
+.menu-group:hover .group-title {
+  background-color: rgba(47, 88, 141, 0.959);
 }
 
 /* 单个菜单项（无下级） */
@@ -173,60 +198,73 @@ export default {
   display: flex;
   align-items: center;
   padding: 12px 20px;
+  transition: all 0.3s;
 }
 
-/* 官网底部的徽章 */
-.menu-item .badge {
-  margin-left: auto;
-  font-size: 12px;
-  color: #1890ff;
-  background: transparent;
-}
-
-/* 当前选中的菜单项 */
+/* 选中项全区域紫色 */
 .menu-item.active {
-  background-color: #1890ff;
-  color: #fff;
+  background-color: #8a05f7b6 !important;
+  color: #fff !important;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 2px 0;
 }
 
-/* 带下级的菜单组 */
+/* 子菜单选中项 */
+.submenu li.active {
+  background-color: #8a05f7b6 !important;
+  color: #fff !important;
+}
+
+/* 带下级的菜单组：父级标题占满宽度 */
 .menu-group .group-title {
   display: flex;
   align-items: center;
   padding: 12px 20px;
+  width: 100%;
+}
+
+/* 父级菜单组选中状态 */
+.menu-group.active .group-title {
+  background-color: #8a05f7b6 !important;
+  color: #fff !important;
+}
+
+/* 官网底部的徽章：白色 */
+.menu-item .badge {
+  margin-left: auto;
+  font-size: 12px;
+  color: #fff !important;
+  background: transparent;
 }
 
 /* 下拉箭头样式 */
 .arrow-icon {
-  width: 16px;
-  height: 16px;
+  width: 16px !important;
+  height: 16px !important;
   margin-left: auto;
-  color: #fff;
+  color: #fff !important;
+  display: inline-flex !important;
 }
 
-/* 子菜单 */
+/* 子菜单：保持原有深色背景和缩进 */
 .submenu {
   list-style: none;
-  background-color: #000c17; /* 比父级深一点的背景 */
-  padding-left: 40px; /* 缩进效果 */
+  background-color: #000c17;
+  padding-left: 40px;
+  margin: 0;
 }
 
 .submenu li {
   display: flex;
   align-items: center;
   padding: 10px 20px;
+  width: 100%;
 }
 
-/* 子菜单图标样式 */
-.sub-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 10px;
-  color: #a0a0a0; /* 子菜单图标颜色浅一点 */
-}
-
+/* 子菜单hover效果 */
 .submenu li:hover {
   color: #1890ff;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(6, 227, 243, 0.801);
 }
 </style>
