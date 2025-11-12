@@ -1,11 +1,11 @@
 <template>
-  <div class="static-sidebar">
+  <!-- 增加折叠状态类名和文字隐藏逻辑 -->
+  <div class="static-sidebar" :class="{ 'collapsed': collapsed }">
     <!-- 顶部Logo区域：大图片Logo（1.png） -->
     <div class="sidebar-header">
       <div class="logo">
-        <!-- 大图片Logo：增加max-width确保不溢出 -->
         <img src="@/assets/images/1.png" alt="Lim管理系统" class="logo-img">
-        <span>Lim管理系统</span>
+        <span :class="{ 'hidden': collapsed }">Lim管理系统</span>
       </div>
     </div>
 
@@ -14,14 +14,14 @@
       <!-- 首页（当前选中状态） -->
       <li class="menu-item active">
         <el-icon class="icon" :style="{ display: 'inline-flex' }"><Home /></el-icon>
-        <span>首页</span>
+        <span :class="{ 'hidden': collapsed }">首页</span>
       </li>
 
       <!-- 系统管理（带下级菜单） -->
       <li class="menu-group">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><Tools /></el-icon>
-          <span>系统管理</span>
+          <span :class="{ 'hidden': collapsed }">系统管理</span>
           <el-icon class="arrow-icon"><ArrowDown /></el-icon>
         </div>
         <ul class="submenu">
@@ -39,7 +39,7 @@
       <li class="menu-group">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><Notebook2 /></el-icon>
-          <span>日志管理</span>
+          <span :class="{ 'hidden': collapsed }">日志管理</span>
           <el-icon class="arrow-icon"><ArrowDown /></el-icon>
         </div>
       </li>
@@ -48,7 +48,7 @@
       <li class="menu-group">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><VideoCamera /></el-icon>
-          <span>系统监控</span>
+          <span :class="{ 'hidden': collapsed }">系统监控</span>
           <el-icon class="arrow-icon"><ArrowDown /></el-icon>
         </div>
       </li>
@@ -57,16 +57,14 @@
       <li class="menu-group">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><Box /></el-icon>
-          <span>系统工具</span>
+          <span :class="{ 'hidden': collapsed }">系统工具</span>
           <el-icon class="arrow-icon"><ArrowDown /></el-icon>
         </div>
       </li>
 
-      <!-- 官网（徽章白色） -->
       <li class="menu-item" style="margin-top: auto;">
         <el-icon class="icon" :style="{ display: 'inline-flex' }"><Link /></el-icon>
-        <span>官网</span>
-        <span class="badge">vue.ruoyi.vip</span>
+        <span class="badge" :class="{ 'hidden': collapsed }">https://github.com/lplly/</span>
       </li>
     </ul>
   </div>
@@ -86,6 +84,13 @@ export default {
     Home, Tools, User, UserFilled, Menu, OfficeBuilding,
     Postcard, CollectionTag, Message, Notebook2,
     VideoCamera, Box, Link, ArrowDown
+  },
+  // 新增：接收父组件传递的折叠状态
+  props: {
+    collapsed: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
@@ -94,13 +99,24 @@ export default {
 /* 侧边栏容器：保持原有蓝色背景 */
 .static-sidebar {
   width: 210px;
-  height: 100vh;
+  height: 100%; /* 改为100%，适配布局容器高度 */
   background-color: #3e90dd;
   color: #fff;
   font-size: 14px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: width 0.3s; /* 增加折叠过渡动画 */
+}
+
+/* 新增：侧边栏折叠状态 */
+.static-sidebar.collapsed {
+  width: 60px;
+}
+
+/* 新增：折叠时隐藏文字 */
+.hidden {
+  display: none !important;
 }
 
 /* 顶部Logo区域 */
@@ -262,9 +278,24 @@ export default {
   width: 100%;
 }
 
-/* 子菜单hover效果 */
 .submenu li:hover {
   color: #1890ff;
   background-color: rgba(6, 227, 243, 0.801);
+}
+
+.notebook-icon {
+  width: 20px !important;
+  height: 20px !important;
+  color: #075196 !important; /* 与其他图标保持一致的颜色 */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 确保所有一级菜单图标样式统一生效（补充优先级） */
+.group-title .icon {
+  width: 20px !important;
+  height: 20px !important;
+  display: inline-flex !important;
 }
 </style>
