@@ -96,10 +96,10 @@ export default {
 </script>
 
 <style scoped>
-/* 侧边栏容器：保持原有蓝色背景 */
+/* 侧边栏容器：保持蓝色背景 */
 .static-sidebar {
   width: 210px;
-  height: 100%; /* 改为100%，适配布局容器高度 */
+  height: 100%; 
   background-color: #3e90dd;
   color: #fff;
   font-size: 14px;
@@ -131,25 +131,25 @@ export default {
 .sidebar-header .logo {
   display: flex;
   align-items: center;
-  width: 100%; /* 确保占满宽度 */
-  gap: 8px; /* 图标和文字间距，比margin更灵活 */
+  width: 100%; 
+  gap: 8px; 
 }
 
-/* 核心修改：大图片Logo适配（避免拉伸/溢出） */
+
 .logo-img {
-  height: 40px; /* 适配Logo区域高度（60px-上下内边距） */
-  max-width: 120px; /* 限制最大宽度，避免溢出侧边栏 */
-  object-fit: contain; /* 保持图片比例，不拉伸变形 */
-  vertical-align: middle; /* 垂直居中 */
+  height: 40px; 
+  max-width: 120px; 
+  object-fit: contain; 
+  vertical-align: middle; 
 }
 
-/* Logo文字：保持原有样式 */
+/* Logo文字 */
 .sidebar-header .logo span {
   font-size: 16px;
   font-weight: 500;
-  white-space: nowrap; /* 避免文字换行 */
+  white-space: nowrap; 
   overflow: hidden;
-  text-overflow: ellipsis; /* 文字过长时显示省略号 */
+  text-overflow: ellipsis; 
 }
 
 /* 图标通用样式：强制显示 */
@@ -163,7 +163,7 @@ export default {
   justify-content: center;
 }
 
-/* 子菜单图标样式：同样强制显示 */
+/* 子菜单图标样式：强制显示 */
 .sub-icon {
   width: 16px !important;
   height: 16px !important;
@@ -184,7 +184,7 @@ export default {
   flex-direction: column;
 }
 
-/* 滚动条美化：保持原有青色 */
+/* 滚动条美化 */
 .menu-list::-webkit-scrollbar {
   width: 4px;
 }
@@ -201,7 +201,7 @@ export default {
   width: 100%;
 }
 
-/* 菜单项hover效果：保持你的深蓝色 */
+
 .menu-item:hover {
   background-color: rgba(47, 88, 141, 0.959);
 }
@@ -246,7 +246,7 @@ export default {
   color: #fff !important;
 }
 
-/* 官网底部的徽章：白色 */
+/* 底部的徽章：白色 */
 .menu-item .badge {
   margin-left: auto;
   font-size: 12px;
@@ -286,13 +286,13 @@ export default {
 .notebook-icon {
   width: 20px !important;
   height: 20px !important;
-  color: #075196 !important; /* 与其他图标保持一致的颜色 */
+  color: #075196 !important; 
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
-/* 确保所有一级菜单图标样式统一生效（补充优先级） */
+/* 确保所有一级菜单图标样式统一生效 */
 .group-title .icon {
   width: 20px !important;
   height: 20px !important;

@@ -9,7 +9,7 @@ import MainLayout from './components/MainLayout.vue'
 </script>
 
 <style>
-/* 全局样式重置（保持原有） */
+/* 全局样式重置 */
 * {
   margin: 0;
   padding: 0;

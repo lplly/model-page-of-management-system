@@ -1,6 +1,6 @@
 <template>
   <header class="top-nav">
-    <!-- 菜单按钮（控制侧边栏折叠） -->
+    <!-- 菜单按钮 -->
     <el-icon class="menu-btn" @click="handleToggleSidebar">
       <Menu />
     </el-icon>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-// 引入需要的图标（因为main.js已全局注册，这里可省略，也可保留）
+// 引入需要的图标
 import { Menu, Search, Refresh, QuestionFilled, Grid, Moon, CaretDown, More } from '@element-plus/icons-vue'
 
 export default {
@@ -51,7 +51,7 @@ export default {
   components: {
     Menu, Search, Refresh, QuestionFilled, Grid, Moon, CaretDown, More
   },
-  // 用emits选项声明事件（替代defineEmits）
+  // 用emits选项声明事件
   emits: ['toggle-sidebar'],
   methods: {
     handleToggleSidebar() {
