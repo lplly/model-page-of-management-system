@@ -1,0 +1,21 @@
+{
+  "name": "page",
+  "version": "1.0.0",
+  "description": "page for users",
+  "homepage": "https://github.com/lplly/model-page-of-management-system#readme",
+  "bugs": {
+    "url": "https://github.com/lplly/model-page-of-management-system/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lplly/model-page-of-management-system.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "live-server --open --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
