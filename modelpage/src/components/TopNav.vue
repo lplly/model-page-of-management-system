@@ -28,7 +28,7 @@
       
       <!-- 用户信息 -->
       <div class="user-info">
-        <img src="@/assets/images/user-avatar.png" alt="用户头像" class="avatar">
+        <img src="@/assets/images/user-avatar.png" alt="用户" class="avatar">
         <span class="username">Lim</span>
         <el-icon class="arrow-icon">
           <CaretDown />

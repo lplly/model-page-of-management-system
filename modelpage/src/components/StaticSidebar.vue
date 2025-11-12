@@ -38,7 +38,7 @@
       <!-- 日志管理 -->
       <li class="menu-group">
         <div class="group-title">
-          <el-icon class="icon" :style="{ display: 'inline-flex' }"><Notebook2 /></el-icon>
+          <el-icon class="icon" :style="{ display: 'inline-flex' }"><Notebook /></el-icon>
           <span :class="{ 'hidden': collapsed }">日志管理</span>
           <el-icon class="arrow-icon"><ArrowDown /></el-icon>
         </div>
@@ -74,7 +74,7 @@
 // 确保只引入使用过的图标
 import {
   Home, Tools, User, UserFilled, Menu, OfficeBuilding,
-  Postcard, CollectionTag, Message, Notebook2,
+  Postcard, CollectionTag, Message, Notebook,
   VideoCamera, Box, Link, ArrowDown
 } from '@element-plus/icons-vue'
 
@@ -82,7 +82,7 @@ export default {
   name: 'static-sidebar',
   components: {
     Home, Tools, User, UserFilled, Menu, OfficeBuilding,
-    Postcard, CollectionTag, Message, Notebook2,
+    Postcard, CollectionTag, Message, Notebook,
     VideoCamera, Box, Link, ArrowDown
   },
   // 新增：接收父组件传递的折叠状态
@@ -106,15 +106,15 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: width 0.3s; /* 增加折叠过渡动画 */
+  transition: width 0.2s; /* 折叠过渡动画 */
 }
 
-/* 新增：侧边栏折叠状态 */
+/* 侧边栏折叠状态 */
 .static-sidebar.collapsed {
   width: 60px;
 }
 
-/* 新增：折叠时隐藏文字 */
+/* 折叠时隐藏文字 */
 .hidden {
   display: none !important;
 }
@@ -152,7 +152,7 @@ export default {
   text-overflow: ellipsis; 
 }
 
-/* 图标通用样式：强制显示 */
+/* 图标通用样式 */
 .icon {
   width: 20px !important;
   height: 20px !important;
@@ -163,7 +163,7 @@ export default {
   justify-content: center;
 }
 
-/* 子菜单图标样式：强制显示 */
+/* 子菜单图标样式 */
 .sub-icon {
   width: 16px !important;
   height: 16px !important;
@@ -190,11 +190,11 @@ export default {
 }
 
 .menu-list::-webkit-scrollbar-thumb {
-  background: #07c4aa;
+  background: #075196;
   border-radius: 2px;
 }
 
-/* 菜单项通用样式：确保占满宽度 */
+/* 菜单项通用样式 */
 .menu-item, .menu-group {
   margin: 2px 0;
   cursor: pointer;
