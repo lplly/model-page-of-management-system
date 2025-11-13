@@ -17,49 +17,82 @@
         <span :class="{ 'hidden': collapsed }">首页</span>
       </li>
 
-      <!-- 系统管理（带下级菜单） -->
-      <li class="menu-group">
+      <!-- 系统管理（带下级菜单 + 过渡动画） -->
+      <li class="menu-group" @click="toggleSubmenu('system')">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><Tools /></el-icon>
           <span :class="{ 'hidden': collapsed }">系统管理</span>
-          <el-icon class="arrow-icon"><ArrowDown /></el-icon>
+          <!-- 箭头旋转过渡 -->
+          <el-icon class="arrow-icon" :class="{ 'rotate': openSubmenu === 'system' }">
+            <ArrowDown />
+          </el-icon>
         </div>
-        <ul class="submenu">
-          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><User /></el-icon><span>用户管理</span></li>
-          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><UserFilled /></el-icon><span>角色管理</span></li>
-          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Menu /></el-icon><span>菜单管理</span></li>
-          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><OfficeBuilding /></el-icon><span>部门管理</span></li>
-          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Postcard /></el-icon><span>岗位管理</span></li>
-          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><CollectionTag /></el-icon><span>字典管理</span></li>
-          <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Message /></el-icon><span>通知公告</span></li>
-        </ul>
+        <!-- 子菜单展开/折叠过渡：高度+透明度动画 -->
+        <transition name="submenu-fade">
+          <ul class="submenu" v-if="openSubmenu === 'system'">
+            <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><User /></el-icon><span>用户管理</span></li>
+            <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><UserFilled /></el-icon><span>角色管理</span></li>
+            <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Menu /></el-icon><span>菜单管理</span></li>
+            <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><OfficeBuilding /></el-icon><span>部门管理</span></li>
+            <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Postcard /></el-icon><span>岗位管理</span></li>
+            <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><CollectionTag /></el-icon><span>字典管理</span></li>
+            <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Message /></el-icon><span>通知公告</span></li>
+          </ul>
+        </transition>
       </li>
 
-      <!-- 日志管理 -->
-      <li class="menu-group">
+      <!-- 日志管理（带过渡动画） -->
+      <li class="menu-group" @click="toggleSubmenu('log')">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><Notebook /></el-icon>
           <span :class="{ 'hidden': collapsed }">日志管理</span>
-          <el-icon class="arrow-icon"><ArrowDown /></el-icon>
+          <el-icon class="arrow-icon" :class="{ 'rotate': openSubmenu === 'log' }">
+            <ArrowDown />
+          </el-icon>
         </div>
+        <transition name="submenu-fade">
+          <ul class="submenu" v-if="openSubmenu === 'log'">
+            <!-- 可添加日志管理子菜单内容 -->
+            <li><span>操作日志</span></li>
+            <li><span>登录日志</span></li>
+          </ul>
+        </transition>
       </li>
 
-      <!-- 系统监控 -->
-      <li class="menu-group">
+      <!-- 系统监控（带过渡动画） -->
+      <li class="menu-group" @click="toggleSubmenu('monitor')">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><VideoCamera /></el-icon>
           <span :class="{ 'hidden': collapsed }">系统监控</span>
-          <el-icon class="arrow-icon"><ArrowDown /></el-icon>
+          <el-icon class="arrow-icon" :class="{ 'rotate': openSubmenu === 'monitor' }">
+            <ArrowDown />
+          </el-icon>
         </div>
+        <transition name="submenu-fade">
+          <ul class="submenu" v-if="openSubmenu === 'monitor'">
+            <!-- 可添加系统监控子菜单内容 -->
+            <li><span>服务器监控</span></li>
+            <li><span>接口监控</span></li>
+          </ul>
+        </transition>
       </li>
 
-      <!-- 系统工具 -->
-      <li class="menu-group">
+      <!-- 系统工具（带过渡动画） -->
+      <li class="menu-group" @click="toggleSubmenu('tool')">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><Box /></el-icon>
           <span :class="{ 'hidden': collapsed }">系统工具</span>
-          <el-icon class="arrow-icon"><ArrowDown /></el-icon>
+          <el-icon class="arrow-icon" :class="{ 'rotate': openSubmenu === 'tool' }">
+            <ArrowDown />
+          </el-icon>
         </div>
+        <transition name="submenu-fade">
+          <ul class="submenu" v-if="openSubmenu === 'tool'">
+            <!-- 可添加系统工具子菜单内容 -->
+            <li><span>表单生成</span></li>
+            <li><span>代码生成</span></li>
+          </ul>
+        </transition>
       </li>
 
       <li class="menu-item" style="margin-top: auto;">
@@ -90,6 +123,18 @@ export default {
     collapsed: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      openSubmenu: '' // 记录当前展开的子菜单（空=都关闭，值=对应菜单key）
+    }
+  },
+  methods: {
+    // 切换子菜单展开/折叠
+    toggleSubmenu(key) {
+      // 点击当前展开的菜单则关闭，否则展开
+      this.openSubmenu = this.openSubmenu === key ? '' : key
     }
   }
 }
@@ -134,7 +179,6 @@ export default {
   width: 100%; 
   gap: 8px; 
 }
-
 
 .logo-img {
   height: 40px; 
@@ -201,7 +245,13 @@ export default {
   width: 100%;
 }
 
+/* 菜单组点击区域占满（方便点击展开） */
+.menu-group {
+  display: flex;
+  flex-direction: column;
+}
 
+/* 菜单项hover效果 */
 .menu-item:hover {
   background-color: rgba(47, 88, 141, 0.959);
 }
@@ -254,13 +304,18 @@ export default {
   background: transparent;
 }
 
-/* 下拉箭头样式 */
+/* 下拉箭头样式 + 旋转过渡 */
 .arrow-icon {
   width: 16px !important;
   height: 16px !important;
   margin-left: auto;
   color: #fff !important;
   display: inline-flex !important;
+  transition: transform 0.3s ease; /* 箭头旋转过渡 */
+}
+/* 箭头旋转效果（展开时） */
+.arrow-icon.rotate {
+  transform: rotate(180deg);
 }
 
 /* 子菜单：保持原有深色背景和缩进 */
@@ -281,6 +336,23 @@ export default {
 .submenu li:hover {
   color: #1890ff;
   background-color: rgba(6, 227, 243, 0.801);
+}
+
+/* 子菜单展开/折叠过渡动画（核心） */
+.submenu-fade-enter-from,
+.submenu-fade-leave-to {
+  height: 0 !important;
+  opacity: 0;
+  overflow: hidden;
+}
+.submenu-fade-enter-active,
+.submenu-fade-leave-active {
+  transition: all 0.3s ease; /* 过渡时长和缓动效果 */
+}
+.submenu-fade-enter-to,
+.submenu-fade-leave-from {
+  height: auto;
+  opacity: 1;
 }
 
 .notebook-icon {
