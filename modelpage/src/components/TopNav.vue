@@ -1,6 +1,6 @@
 <template>
   <header class="top-nav">
-    <!-- 菜单按钮：添加旋转类 + 接收折叠状态 -->
+    <!-- 菜单按钮 -->
     <el-icon class="menu-btn" :class="{ 'rotate': collapsed }" @click="handleToggleSidebar">
       <Menu />
     </el-icon>
@@ -51,18 +51,18 @@ export default {
   components: {
     Menu, Search, Refresh, QuestionFilled, Grid, Moon, CaretDown, More
   },
-  // 1. 新增：接收父组件传递的折叠状态（用于同步按钮旋转）
+  // 1. 新增：接收父组件传递的折叠状态
   props: {
     collapsed: {
       type: Boolean,
-      default: false // 默认不折叠，图标不旋转
+      default: false 
     }
   },
-  // 用emits选项声明事件
+
   emits: ['toggle-sidebar'],
   methods: {
     handleToggleSidebar() {
-      this.$emit('toggle-sidebar') // 触发事件
+      this.$emit('toggle-sidebar') 
     }
   }
 }

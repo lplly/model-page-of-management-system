@@ -5,29 +5,30 @@
     <div class="sidebar-header">
       <div class="logo">
         <img src="@/assets/images/1.png" alt="Lim管理系统" class="logo-img">
-        <span :class="{ 'hidden': collapsed }">Lim管理系统</span>
+        <!-- 增加文字过渡类名 text-transition -->
+        <span :class="{ 'collapsed-text': collapsed, 'text-transition': true }">Lim管理系统</span>
       </div>
     </div>
 
-    <!-- 导航菜单列表：保持你的结构 -->
+    <!-- 导航菜单列表 -->
     <ul class="menu-list">
-      <!-- 首页（当前选中状态） -->
+      <!-- 首页 -->
       <li class="menu-item active">
         <el-icon class="icon" :style="{ display: 'inline-flex' }"><Home /></el-icon>
-        <span :class="{ 'hidden': collapsed }">首页</span>
+        <span :class="{ 'collapsed-text': collapsed, 'text-transition': true }">首页</span>
       </li>
 
-      <!-- 系统管理（带下级菜单 + 过渡动画） -->
+      <!-- 系统管理 -->
       <li class="menu-group" @click="toggleSubmenu('system')">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><Tools /></el-icon>
-          <span :class="{ 'hidden': collapsed }">系统管理</span>
+          <span :class="{ 'collapsed-text': collapsed, 'text-transition': true }">系统管理</span>
           <!-- 箭头旋转过渡 -->
           <el-icon class="arrow-icon" :class="{ 'rotate': openSubmenu === 'system' }">
             <ArrowDown />
           </el-icon>
         </div>
-        <!-- 子菜单展开/折叠过渡：高度+透明度动画 -->
+        <!-- 子菜单展开/折叠过渡 -->
         <transition name="submenu-fade">
           <ul class="submenu" v-if="openSubmenu === 'system'">
             <li><el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><User /></el-icon><span>用户管理</span></li>
@@ -41,11 +42,11 @@
         </transition>
       </li>
 
-      <!-- 日志管理（带过渡动画） -->
+      <!-- 日志管理 -->
       <li class="menu-group" @click="toggleSubmenu('log')">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><Notebook /></el-icon>
-          <span :class="{ 'hidden': collapsed }">日志管理</span>
+          <span :class="{ 'collapsed-text': collapsed, 'text-transition': true }">日志管理</span>
           <el-icon class="arrow-icon" :class="{ 'rotate': openSubmenu === 'log' }">
             <ArrowDown />
           </el-icon>
@@ -59,11 +60,11 @@
         </transition>
       </li>
 
-      <!-- 系统监控（带过渡动画） -->
+      <!-- 系统监控 -->
       <li class="menu-group" @click="toggleSubmenu('monitor')">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><VideoCamera /></el-icon>
-          <span :class="{ 'hidden': collapsed }">系统监控</span>
+          <span :class="{ 'collapsed-text': collapsed, 'text-transition': true }">系统监控</span>
           <el-icon class="arrow-icon" :class="{ 'rotate': openSubmenu === 'monitor' }">
             <ArrowDown />
           </el-icon>
@@ -77,11 +78,11 @@
         </transition>
       </li>
 
-      <!-- 系统工具（带过渡动画） -->
+      <!-- 系统工具 -->
       <li class="menu-group" @click="toggleSubmenu('tool')">
         <div class="group-title">
           <el-icon class="icon" :style="{ display: 'inline-flex' }"><Box /></el-icon>
-          <span :class="{ 'hidden': collapsed }">系统工具</span>
+          <span :class="{ 'collapsed-text': collapsed, 'text-transition': true }">系统工具</span>
           <el-icon class="arrow-icon" :class="{ 'rotate': openSubmenu === 'tool' }">
             <ArrowDown />
           </el-icon>
@@ -89,22 +90,22 @@
         <transition name="submenu-fade">
           <ul class="submenu" v-if="openSubmenu === 'tool'">
             <!-- 可添加系统工具子菜单内容 -->
-            <li><span>表单生成</span></li>
-            <li><span>代码生成</span></li>
+            <li><span>可新增内容</span></li>
+            <li><span>可新增内容</span></li>
           </ul>
         </transition>
       </li>
 
       <li class="menu-item" style="margin-top: auto;">
         <el-icon class="icon" :style="{ display: 'inline-flex' }"><Link /></el-icon>
-        <span class="badge" :class="{ 'hidden': collapsed }">https://github.com/lplly/</span>
+        <span class="badge" :class="{ 'collapsed-text': collapsed, 'text-transition': true }">https://github.com/lplly/</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-// 确保只引入使用过的图标
+
 import {
   Home, Tools, User, UserFilled, Menu, OfficeBuilding,
   Postcard, CollectionTag, Message, Notebook,
@@ -118,7 +119,6 @@ export default {
     Postcard, CollectionTag, Message, Notebook,
     VideoCamera, Box, Link, ArrowDown
   },
-  // 新增：接收父组件传递的折叠状态
   props: {
     collapsed: {
       type: Boolean,
@@ -133,7 +133,6 @@ export default {
   methods: {
     // 切换子菜单展开/折叠
     toggleSubmenu(key) {
-      // 点击当前展开的菜单则关闭，否则展开
       this.openSubmenu = this.openSubmenu === key ? '' : key
     }
   }
@@ -141,7 +140,7 @@ export default {
 </script>
 
 <style scoped>
-/* 侧边栏容器：保持蓝色背景 */
+/* 侧边栏容器 */
 .static-sidebar {
   width: 210px;
   height: 100%; 
@@ -151,7 +150,7 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: width 0.2s; /* 折叠过渡动画 */
+  transition: width 0.3s ease;
 }
 
 /* 侧边栏折叠状态 */
@@ -159,9 +158,22 @@ export default {
   width: 60px;
 }
 
-/* 折叠时隐藏文字 */
-.hidden {
-  display: none !important;
+/* 文字过渡核心样式 */
+.text-transition {
+  white-space: nowrap; /* 防止文字换行错位 */
+  transition: all 0.3s ease; 
+  opacity: 1; 
+  transform: translateX(0); 
+  max-width: 150px; /* 限制最大宽度，避免溢出 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.collapsed-text {
+  opacity: 0;
+  transform: translateX(-10px); 
+  max-width: 0; 
 }
 
 /* 顶部Logo区域 */
@@ -185,15 +197,18 @@ export default {
   max-width: 120px; 
   object-fit: contain; 
   vertical-align: middle; 
+  transition: all 0.3s ease; 
+}
+
+
+.static-sidebar.collapsed .logo-img {
+  height: 34px;
 }
 
 /* Logo文字 */
 .sidebar-header .logo span {
   font-size: 16px;
   font-weight: 500;
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis; 
 }
 
 /* 图标通用样式 */
@@ -205,6 +220,12 @@ export default {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* 折叠时图标居中 */
+.static-sidebar.collapsed .icon {
+  margin-right: 0;
 }
 
 /* 子菜单图标样式 */
@@ -245,7 +266,7 @@ export default {
   width: 100%;
 }
 
-/* 菜单组点击区域占满（方便点击展开） */
+/* 菜单组点击区域占满 */
 .menu-group {
   display: flex;
   flex-direction: column;
@@ -259,12 +280,18 @@ export default {
   background-color: rgba(47, 88, 141, 0.959);
 }
 
-/* 单个菜单项（无下级） */
+/* 单个菜单项 */
 .menu-item {
   display: flex;
   align-items: center;
   padding: 12px 20px;
   transition: all 0.3s;
+}
+
+/* 折叠时菜单项内边距调整 */
+.static-sidebar.collapsed .menu-item {
+  padding: 12px 15px;
+  justify-content: center;
 }
 
 /* 选中项全区域紫色 */
@@ -276,18 +303,30 @@ export default {
   margin: 2px 0;
 }
 
+/* 折叠时选中项内边距调整 */
+.static-sidebar.collapsed .menu-item.active {
+  padding: 12px 15px;
+}
+
 /* 子菜单选中项 */
 .submenu li.active {
   background-color: #8a05f7b6 !important;
   color: #fff !important;
 }
 
-/* 带下级的菜单组：父级标题占满宽度 */
+/* 带下级的菜单组 */
 .menu-group .group-title {
   display: flex;
   align-items: center;
   padding: 12px 20px;
   width: 100%;
+  transition: all 0.3s;
+}
+
+/* 折叠时菜单组标题内边距调整 */
+.static-sidebar.collapsed .group-title {
+  padding: 12px 15px;
+  justify-content: center;
 }
 
 /* 父级菜单组选中状态 */
@@ -296,12 +335,17 @@ export default {
   color: #fff !important;
 }
 
-/* 底部的徽章：白色 */
+/* 底部的徽章 */
 .menu-item .badge {
   margin-left: auto;
   font-size: 12px;
   color: #fff !important;
   background: transparent;
+}
+
+
+.static-sidebar.collapsed .badge {
+  margin-left: 0;
 }
 
 /* 下拉箭头样式 + 旋转过渡 */
@@ -311,19 +355,31 @@ export default {
   margin-left: auto;
   color: #fff !important;
   display: inline-flex !important;
-  transition: transform 0.3s ease; /* 箭头旋转过渡 */
+  transition: transform 0.3s ease; 
 }
-/* 箭头旋转效果（展开时） */
+
+/* 折叠时隐藏箭头 */
+.static-sidebar.collapsed .arrow-icon {
+  display: none !important;
+}
+
+/* 箭头旋转效果） */
 .arrow-icon.rotate {
   transform: rotate(180deg);
 }
 
-/* 子菜单：保持原有深色背景和缩进 */
+/* 子菜单 */
 .submenu {
   list-style: none;
   background-color: #000c17;
   padding-left: 40px;
   margin: 0;
+  transition: all 0.3s ease; 
+}
+
+/* 折叠时隐藏子菜单） */
+.static-sidebar.collapsed .submenu {
+  display: none;
 }
 
 .submenu li {
@@ -338,7 +394,7 @@ export default {
   background-color: rgba(6, 227, 243, 0.801);
 }
 
-/* 子菜单展开/折叠过渡动画（核心） */
+/* 子菜单展开/折叠过渡动画 */
 .submenu-fade-enter-from,
 .submenu-fade-leave-to {
   height: 0 !important;
@@ -347,7 +403,7 @@ export default {
 }
 .submenu-fade-enter-active,
 .submenu-fade-leave-active {
-  transition: all 0.3s ease; /* 过渡时长和缓动效果 */
+  transition: all 0.3s ease; 
 }
 .submenu-fade-enter-to,
 .submenu-fade-leave-from {
