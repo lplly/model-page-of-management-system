@@ -47,6 +47,12 @@
               <el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><CollectionTag /></el-icon>
               <span>字典管理</span>
             </li>
+
+            <li class="submenu-item">
+              <el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><DataLine /></el-icon>
+              <span>参数设置</span>
+            </li>
+
             <li class="submenu-item">
               <el-icon class="sub-icon" :style="{ display: 'inline-flex' }"><Message /></el-icon>
               <span>通知公告</span>
@@ -162,7 +168,8 @@ import {
   Operation,
   CopyDocument,
   Edit,
-  Expand
+  Expand,
+  DataLine
 } from '@element-plus/icons-vue'
 
 export default {
@@ -171,7 +178,8 @@ export default {
     House, Tools, User, UserFilled, Menu, OfficeBuilding,
     Postcard, CollectionTag, Message, Notebook, ArrowDown,
     VideoCamera, Box, Link, Avatar, Coordinate, List, Clock,
-    Document, Monitor, Operation, CopyDocument, Edit, Expand
+    Document, Monitor, Operation, CopyDocument, Edit, Expand,
+    DataLine
   },
   props: {
     collapsed: {
@@ -296,12 +304,12 @@ export default {
 }
 
 .menu-list::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 
 .menu-list::-webkit-scrollbar-thumb {
-  background: #075196;
-  border-radius: 2px;
+  background: rgb(145, 158, 175);
+  border-radius: 4px;
 }
 
 .menu-item, .menu-group {
@@ -335,7 +343,7 @@ export default {
 }
 
 .menu-item.active {
-  background-color:rgba(233, 102, 222, 0.932) !important;
+  background-color:#e673dc93 !important;
   color: #fff !important;
   width: 100%;
   padding: 12px 20px;
@@ -360,7 +368,7 @@ export default {
 }
 
 .menu-group.active .group-title {
-  background-color: #8a05f7b6 !important;
+  background-color: #fd78f2 !important;
   color: #fff !important;
 }
 
@@ -397,7 +405,7 @@ export default {
 .submenu {
   list-style: none;
   background-color: #000c17;
-  padding-left: 40px;
+  padding-left: 0px;
   margin: 0;
   transition: all 0.3s ease; 
 }
@@ -477,7 +485,7 @@ export default {
 
 .sub-submenu-item:hover {
   color: #1890ff;
-  background-color: rgba(6, 227, 243, 0.2);
+  background-color: rgba(6, 227, 243, 0.767);
   padding-left: 25px;
 }
 
@@ -494,8 +502,8 @@ export default {
 /* 二级子菜单容器样式 */
 .sub-submenu {
   list-style: none;
-  background-color: #0a1420; /* 比一级子菜单深一点，区分层级 */
-  padding-left: 30px; /* 比一级子菜单多缩进，层级更清晰 */
+  background-color: #0a1420; 
+  padding-left: 10px; /* 比一级子菜单多缩进，层级更清晰 */
   margin: 0;
   transition: all 0.3s ease;
 }
@@ -519,7 +527,7 @@ export default {
 
 /* 二级子菜单项选中状态 */
 .sub-submenu-item.active {
-  background-color: #8a05f799 !important;
+  background-color: #f55bb5 !important;
   color: #fff !important;
 }
 

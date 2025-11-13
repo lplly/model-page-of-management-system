@@ -14,7 +14,7 @@
         Welcome to Use Lim Management System</h2>
         <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
           这里是系统主内容区域，可根据需求填充具体功能页面（如数据统计、表单、列表等）<br>
-          This is the main content area of the system, <br>Where specific functional pages (such as data statistics, forms, lists, etc.) can be added if needed
+          This is the main area of the system.<br>Any specific functional pages (such as data statistics, forms, lists, etc.) can be added if needed
         
         </div>
       </div>

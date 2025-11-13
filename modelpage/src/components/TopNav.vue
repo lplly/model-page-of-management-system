@@ -1,12 +1,16 @@
 <template>
   <header class="top-nav">
-    <!-- 菜单按钮 -->
-    <el-icon class="menu-btn" :class="{ 'rotate': collapsed }" @click="handleToggleSidebar">
+    <!-- 菜单按钮：添加旋转类 + 接收折叠状态 -->
+    <el-icon class="menu-btn" :class="{ 'rotate': collapsed }" @click="handleToggleSidebar" title="切换">
       <Menu />
     </el-icon>
     
     <!-- 标题 -->
-    <div class="nav-title">首页</div>
+    <div class="backing-actions">
+      <el-icon class="action-icon" title="回到首页">
+        <HomeFilled />
+      </el-icon>
+    </div>
     
     <!-- 右侧功能区 -->
     <div class="nav-actions">
@@ -28,9 +32,9 @@
       
       <!-- 用户信息 -->
       <div class="user-info">
-        <img src="@/assets/images/user-avatar.png" alt="用户" class="avatar">
+        <img src="@/assets/images/user-avatar.png" alt="用户" class="avatar" title="用户信息">
         <span class="username">Lim</span>
-        <el-icon class="arrow-icon">
+        <el-icon class="arrow-icon" >
           <CaretDown />
         </el-icon>
       </div>
@@ -44,25 +48,25 @@
 
 <script>
 // 引入需要的图标
-import { Menu, Search, Refresh, QuestionFilled, Grid, Moon, CaretDown, More } from '@element-plus/icons-vue'
+import { Menu, Search, Refresh, QuestionFilled, Grid, Moon, CaretDown, More, HomeFilled } from '@element-plus/icons-vue'
 
 export default {
   name: 'top-nav',
   components: {
-    Menu, Search, Refresh, QuestionFilled, Grid, Moon, CaretDown, More
+    Menu, Search, Refresh, QuestionFilled, Grid, Moon, CaretDown, More,HomeFilled
   },
-  // 1. 新增：接收父组件传递的折叠状态
+  // 1. 新增：接收父组件传递的折叠状态（用于同步按钮旋转）
   props: {
     collapsed: {
       type: Boolean,
-      default: false 
+      default: false // 默认不折叠，图标不旋转
     }
   },
-
+  // 用emits选项声明事件
   emits: ['toggle-sidebar'],
   methods: {
     handleToggleSidebar() {
-      this.$emit('toggle-sidebar') 
+      this.$emit('toggle-sidebar') // 触发事件
     }
   }
 }
@@ -122,6 +126,14 @@ export default {
 }
 .action-icon:hover {
   color: #1890ff;
+}
+
+.backing-icon {
+  width: 20px;
+  height: 20px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s;
 }
 
 .user-info {
