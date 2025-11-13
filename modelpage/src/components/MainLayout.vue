@@ -10,7 +10,7 @@
       
       <!-- 页面主内容（占位预留给未来功能） -->
       <div class="page-content">
-        <h2 style="color: #333; margin-bottom: 20px;">欢迎使用 Lim 管理系统<br>
+        <h2 style="color: #333; margin-bottom: 20px;">欢迎使用栗木管理系统<br>
         Welcome to Use Lim Management System</h2>
         <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
           这里是系统主内容区域，可根据需求填充具体功能页面（如数据统计、表单、列表等）<br>
